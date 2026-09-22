@@ -129,8 +129,12 @@ def textos_analise(resumo, meta):
             f"JSON seguem sequenciais, e há custo de coordenar e esperar a fatia mais lenta.")
     else:
         extra = (f" Acima de {nucleos} threads não há núcleo livre e o ganho estaciona." if tmax > nucleos else "")
-        menor = (f" Com {fmt_n(pequeno)} requisições foi {fx(sp_peq)}× em {tmax} threads: o custo fixo pesa mais."
-                 if sp_peq < sp[tmax] else "")
+        if sp_peq < sp[tmax]:
+            menor = f" Com {fmt_n(pequeno)} requisições foi {fx(sp_peq)}× em {tmax} threads: o custo fixo pesa mais."
+        else:
+            menor = (f" Com {fmt_n(pequeno)} requisições o speedup foi maior ({fx(sp_peq)}× em {tmax} threads): "
+                     f"esses dados cabem quase todos no cache do processador e cada execução termina antes de o "
+                     f"turbo cair; com {fmt_n(grande)} as threads disputam a memória RAM por segundos seguidos.")
         A.append(
             f"<b>O ganho foi linear?</b> Não: speedup de {serie} com {fmt_n(grande)} requisições, em {nucleos} "
             f"núcleos lógicos. Pela Lei de Amdahl, receber o HTTP, fatiar, agregar e serializar o JSON seguem "
@@ -275,7 +279,8 @@ def gerar_pdf(resumo, meta, g_tempo, g_speed, destino):
         f"com R = {fmt_n(grande)} são ~{fx(pares / 1e6, 0)} milhões de pares avaliados, cada um com funções "
         f"trigonométricas. Dobrar R ou H dobra o tempo."))
     st.append(P("1.4 Onde está o gargalo", "h2"))
-    carga = bases.get(grande, {}).get("tempoMs")
+    # se a base já estava em cache no servidor, o tempo medido (~0 ms) não representa a carga real
+    carga = None if bases.get(grande, {}).get("jaEstavaEmCache") else bases.get(grande, {}).get("tempoMs")
     txt_carga = (f"Gerar/carregar o snapshot de {fmt_n(grande)} requisições levou {fmt_ms(carga)} ms, enquanto o "
                  f"cruzamento sequencial levou {fmt_ms(seq_g['tempo_processamento_mediana_ms'])} ms. " if carga else "")
     st.append(P(
@@ -368,7 +373,7 @@ def gerar_pdf(resumo, meta, g_tempo, g_speed, destino):
     st.append(P("6. Como reproduzir", "h1"))
     st.append(P(
         "./mvnw spring-boot:run &nbsp;&nbsp;&nbsp;&nbsp;# ou rodar RotaVitalApplication pela IDE (Java 21)<br/>"
-        "python3 scripts/benchmark.py --tamanhos 100000,1000000 --reps 3<br/>"
+        "python3 scripts/benchmark.py --tamanhos 100000,1000000 --reps " + str(meta.get("reps", 3)) + "<br/>"
         "pip install matplotlib reportlab<br/>"
         "python3 scripts/gerar_relatorio.py --entrada resultados", "code"))
     st.append(P("Os dados são gerados com semente fixa: qualquer máquina produz exatamente as mesmas requisições, "

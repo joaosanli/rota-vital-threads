@@ -10,10 +10,13 @@
       "-Xms1g",
       "-Xmx2g"
     ],
-    "basesCarregadas": []
+    "basesCarregadas": [
+      1000000,
+      100000
+    ]
   },
-  "data": "2026-09-22T15:08:52",
-  "reps": 3,
+  "data": "2026-09-22T15:37:19",
+  "reps": 5,
   "hospitais": 1000,
   "candidatos_por_insumo": 209.6,
   "bases": {
@@ -23,8 +26,8 @@
       "insumos": 30,
       "mediaHospitaisCandidatosPorInsumo": 209.6,
       "seed": 42,
-      "jaEstavaEmCache": false,
-      "tempoMs": 23.2166
+      "jaEstavaEmCache": true,
+      "tempoMs": 1.1763
     },
     "1000000": {
       "requisicoes": 1000000,
@@ -32,8 +35,8 @@
       "insumos": 30,
       "mediaHospitaisCandidatosPorInsumo": 209.6,
       "seed": 42,
-      "jaEstavaEmCache": false,
-      "tempoMs": 127.3711
+      "jaEstavaEmCache": true,
+      "tempoMs": 0.0654
     }
   },
   "divergencias": [],
@@ -42,15 +45,15 @@
     "atendiveis_sequencial": 87838,
     "tentativas": [
       {
-        "atendiveis": 87065,
+        "atendiveis": 87625,
         "igual": false
       },
       {
-        "atendiveis": 86754,
+        "atendiveis": 87574,
         "igual": false
       },
       {
-        "atendiveis": 87583,
+        "atendiveis": 87525,
         "igual": false
       }
     ]
