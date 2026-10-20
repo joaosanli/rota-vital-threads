@@ -166,11 +166,6 @@ Também foi observada a resposta de `GET /api/historico/geracoes` com dois regis
 analisar os critérios da E1, rascunhar o Dockerfile multi-stage, o `compose.yaml`,
 a integração mínima de metadados com PostgreSQL, o README e a apresentação.
 
-**Prompt principal:** “Atue como estudante de ADS da CESAR School e realize a primeira
-entrega do PI Rota Vital, com Dockerfile multi-stage, Compose com API e banco, volume,
-healthchecks, variáveis de ambiente e decisões justificadas no README; crie apresentação
-simples da E1.”
-
 **Validação humana:** o grupo executou o Compose no Windows, consultou a API e registrou evidências de persistência. A revisão dos arquivos e a publicação no GitHub continuam sob responsabilidade dos integrantes; nenhuma execução de CI/CD ou publicação pública foi alegada.
 
 ## Continuidade do PI original
