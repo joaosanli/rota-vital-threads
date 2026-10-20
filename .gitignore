@@ -1,0 +1,11 @@
+# Segredos / configuracao local
+.env
+.env.*
+!.env.example
+# Build e editor
+target/
+.idea/
+.vscode/
+*.class
+# Evidencias reais geradas localmente; conferir antes de publicar
+docs/evidencias/*.txt
