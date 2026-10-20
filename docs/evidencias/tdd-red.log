@@ -1,0 +1,94 @@
+Unable to find image 'maven:3.9-eclipse-temurin-21' locally
+3.9-eclipse-temurin-21: Pulling from library/maven
+8a38824eedc5: Already exists
+470ed8566c78: Already exists
+328631f65d66: Already exists
+c7690fc44560: Already exists
+9a94325f190e: Already exists
+f029f7113649: Already exists
+b40f053b9dce: Already exists
+96cd51eaaf9a: Already exists
+540e7b237472: Already exists
+Digest: sha256:99e61abcff91a9b1333463bd8451fb18495d6eba9250ac66a338b518f8278320
+Status: Downloaded newer image for maven:3.9-eclipse-temurin-21
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------< br.com.rotavital:rota-vital-threads >-----------------
+[INFO] Building rota-vital-threads 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ rota-vital-threads ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.14.0:compile (default-compile) @ rota-vital-threads ---
+[INFO] Recompiling the module because of added or removed source files.
+[INFO] Compiling 11 source files with javac [debug parameters release 21] to target/classes
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ rota-vital-threads ---
+[INFO] skip non existing resourceDirectory /workspace/src/test/resources
+[INFO] 
+[INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ rota-vital-threads ---
+[INFO] Recompiling the module because of changed dependency.
+[INFO] Compiling 3 source files with javac [debug parameters release 21] to target/test-classes
+[INFO] /workspace/src/test/java/br/com/rotavital/web/ApiIT.java: /workspace/src/test/java/br/com/rotavital/web/ApiIT.java uses unchecked or unsafe operations.
+[INFO] /workspace/src/test/java/br/com/rotavital/web/ApiIT.java: Recompile with -Xlint:unchecked for details.
+[INFO] 
+[INFO] --- surefire:3.5.3:test (default-test) @ rota-vital-threads ---
+[INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+[INFO] 
+[INFO] -------------------------------------------------------
+[INFO]  T E S T S
+[INFO] -------------------------------------------------------
+[INFO] Running br.com.rotavital.servico.CruzamentoServiceTest
+[ERROR] Tests run: 2, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.058 s <<< FAILURE! -- in br.com.rotavital.servico.CruzamentoServiceTest
+[ERROR] br.com.rotavital.servico.CruzamentoServiceTest.modoInvalidoNaoDeveGerarBase -- Time elapsed: 0.030 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Rejeitar modo antes de alocar a base ==> expected: <true> but was: <false>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:151)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertTrue.failNotTrue(AssertTrue.java:63)
+	at org.junit.jupiter.api.AssertTrue.assertTrue(AssertTrue.java:36)
+	at org.junit.jupiter.api.Assertions.assertTrue(Assertions.java:214)
+	at br.com.rotavital.servico.CruzamentoServiceTest.modoInvalidoNaoDeveGerarBase(CruzamentoServiceTest.java:12)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[ERROR] br.com.rotavital.servico.CruzamentoServiceTest.threadsInvalidasNaoDevemGerarBase -- Time elapsed: 0.010 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:73)
+	at org.junit.jupiter.api.AssertThrows.assertThrows(AssertThrows.java:35)
+	at org.junit.jupiter.api.Assertions.assertThrows(Assertions.java:3128)
+	at br.com.rotavital.servico.CruzamentoServiceTest.threadsInvalidasNaoDevemGerarBase(CruzamentoServiceTest.java:19)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+[INFO] 
+[INFO] Results:
+[INFO] 
+[ERROR] Failures: 
+[ERROR]   CruzamentoServiceTest.modoInvalidoNaoDeveGerarBase:12 Rejeitar modo antes de alocar a base ==> expected: <true> but was: <false>
+[ERROR]   CruzamentoServiceTest.threadsInvalidasNaoDevemGerarBase:19 Expected java.lang.IllegalArgumentException to be thrown, but nothing was thrown.
+[INFO] 
+[ERROR] Tests run: 2, Failures: 2, Errors: 0, Skipped: 0
+[INFO] 
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  28.298 s
+[INFO] Finished at: 2026-10-20T23:58:37Z
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-surefire-plugin:3.5.3:test (default-test) on project rota-vital-threads: There are test failures.
+[ERROR] 
+[ERROR] See /workspace/target/surefire-reports for the individual test results.
+[ERROR] See dump files (if any exist) [date].dump, [date]-jvmRun[N].dump and [date].dumpstream.
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException
