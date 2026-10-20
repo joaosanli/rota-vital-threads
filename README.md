@@ -127,7 +127,7 @@ testes por nível, commits red → green) ainda não foi implementada nesta E1.
 O `mvn verify` **dentro do Dockerfile não substitui uma esteira de CI/CD**. A URL pública
 e as execuções vermelha/verde do pipeline dependem de E3; nenhuma URL é inventada aqui.
 
-**Repositório do grupo:** [inserir URL real depois de publicar o projeto]  
+**Repositório do grupo:** https://github.com/joaosanli/rota-vital-threads  
 **URL pública:** [preencher na E3]
 
 ## Decisões técnicas e justificativas
