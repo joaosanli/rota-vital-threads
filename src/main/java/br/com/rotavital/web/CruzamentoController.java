@@ -2,6 +2,7 @@ package br.com.rotavital.web;
 
 import br.com.rotavital.cruzamento.ResultadoCruzamento;
 import br.com.rotavital.servico.CruzamentoService;
+import br.com.rotavital.servico.HistoricoGeracoesRepository;
 import br.com.rotavital.servico.RepositorioDeDados;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.lang.management.ManagementFactory;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -33,10 +35,13 @@ public class CruzamentoController {
 
     private final CruzamentoService servico;
     private final RepositorioDeDados repositorio;
+    private final HistoricoGeracoesRepository historico;
 
-    public CruzamentoController(CruzamentoService servico, RepositorioDeDados repositorio) {
+    public CruzamentoController(CruzamentoService servico, RepositorioDeDados repositorio,
+                                HistoricoGeracoesRepository historico) {
         this.servico = servico;
         this.repositorio = repositorio;
+        this.historico = historico;
     }
 
     @GetMapping("/cruzamento")
@@ -61,6 +66,9 @@ public class CruzamentoController {
         long t0 = System.nanoTime();
         boolean jaExistia = repositorio.carregada(requisicoes);
         var base = repositorio.obter(requisicoes);
+        // Persistencia intencional apenas na geracao explicita: a operacao de
+        // cruzamento continua independente de E/S, preservando os benchmarks.
+        historico.registrar(base, jaExistia);
         Map<String, Object> r = new LinkedHashMap<>();
         r.put("requisicoes", base.numRequisicoes);
         r.put("hospitais", base.numHospitais);
@@ -70,6 +78,11 @@ public class CruzamentoController {
         r.put("jaEstavaEmCache", jaExistia);
         r.put("tempoMs", (System.nanoTime() - t0) / 1_000_000.0);
         return r;
+    }
+
+    @GetMapping("/historico/geracoes")
+    public List<Map<String, Object>> historicoGeracoes() {
+        return historico.ultimasGeracoes();
     }
 
     @GetMapping("/info")
