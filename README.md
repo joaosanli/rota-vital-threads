@@ -177,14 +177,6 @@ verifique os limites de CPU/RAM do Docker Desktop e evite requisições simultâ
 
 Veja [story map, testes, TDD, esteira, deploy e rollback](docs/ENTREGAS_E2_E3.md).
 
-### Prompts principais desta sessão
-
-- “estude esse projeto e me diga como rodar”
-- “roda tudo ai”
-- “analise o que foi pedido pelo professor [...] veja se o codigo está cumprindo o necessário”
-- “faça todos os ajustes de codigo que estao faltando”
-- “a entrega de hoje é tudo que continha no print”
-
 A assistência de IA acrescentou validações, testes, automação e documentação. Testes locais e logs são verificáveis; revisão e apresentação pelos integrantes continuam necessárias. Os testes originais não são atribuídos retroativamente a TDD.
 
 ### Esteira publicada
