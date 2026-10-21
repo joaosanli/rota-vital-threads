@@ -1,0 +1,23 @@
+ Container rota-vital-threads-db-1  Running
+ Container rota-vital-threads-api-1  Running
+ Container rota-vital-threads-db-1  Waiting
+ Container rota-vital-threads-db-1  Healthy
+ Container rota-vital-threads-api-1  Waiting
+ Container rota-vital-threads-db-1  Waiting
+ Container rota-vital-threads-api-1  Healthy
+ Container rota-vital-threads-db-1  Healthy
+== Containers ==
+NAME                       IMAGE                    COMMAND                  SERVICE   CREATED             STATUS                       PORTS
+rota-vital-threads-api-1   rota-vital-threads-api   "java -jar /app/app.…"   api       16 seconds ago      Up 15 seconds (healthy)      0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp
+rota-vital-threads-db-1    postgres:16-alpine       "docker-entrypoint.s…"   db        About an hour ago   Up About an hour (healthy)   5432/tcp
+
+== Health ==
+{"status":"UP"}
+
+== Geracao registrada no PostgreSQL ==
+{"requisicoes":1000,"hospitais":1000,"insumos":30,"mediaHospitaisCandidatosPorInsumo":209.6,"seed":42,"jaEstavaEmCache":false,"tempoMs":21.68575}
+
+== Historico persistente ==
+[{"criadoEm":"2026-10-21T00:01:34.046562Z","jaEstavaEmCache":false,"requisicoes":1000,"hospitais":1000,"seed":42,"insumos":30,"id":3},{"criadoEm":"2026-10-20T22:41:28.301104Z","jaEstavaEmCache":true,"requisicoes":1000,"hospitais":1000,"seed":42,"insumos":30,"id":2},{"criadoEm":"2026-10-20T22:32:50.392930Z","jaEstavaEmCache":false,"requisicoes":1000,"hospitais":1000,"seed":42,"insumos":30,"id":1}]
+
+E1 respondeu. Teste a persistencia executando docker compose down, docker compose up -d e consultando /api/historico/geracoes novamente.
