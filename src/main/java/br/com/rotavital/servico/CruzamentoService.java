@@ -33,6 +33,12 @@ public class CruzamentoService {
     }
 
     public ResultadoCruzamento executar(String modo, int threads, int requisicoes) {
+        if (!List.of("sequencial", "plataforma", "virtual", "inseguro").contains(modo)) {
+            throw new IllegalArgumentException("modo inválido: " + modo);
+        }
+        if (!THREADS_PERMITIDAS.contains(threads)) {
+            throw new IllegalArgumentException("threads deve ser um de " + THREADS_PERMITIDAS);
+        }
         BaseDeDados base = repositorio.obter(requisicoes);
         return switch (modo) {
             case "sequencial" -> MotorCruzamento.sequencial(base);

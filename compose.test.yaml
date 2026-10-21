@@ -1,0 +1,32 @@
+# Ambiente isolado: nunca usa o banco nem o volume da aplicação.
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: rotavital_test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test_only_ephemeral
+    healthcheck:
+      test: [CMD-SHELL, 'pg_isready -U test -d rotavital_test']
+      interval: 2s
+      timeout: 5s
+      retries: 30
+    tmpfs:
+      - /var/lib/postgresql/data
+  tests:
+    image: maven:3.9-eclipse-temurin-21
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - maven_test_cache:/root/.m2
+    environment:
+      DB_HOST: db
+      DB_NAME: rotavital_test
+      DB_USER: test
+      DB_PASSWORD: test_only_ephemeral
+    depends_on:
+      db:
+        condition: service_healthy
+    command: [mvn, -B, --no-transfer-progress, -Pintegration, clean, verify]
+volumes:
+  maven_test_cache:

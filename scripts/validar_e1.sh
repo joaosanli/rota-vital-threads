@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 set -euo pipefail
+cd "$(dirname "$0")/.."
 if ! command -v docker >/dev/null 2>&1; then
   echo 'Docker nao encontrado. Instale o Docker Desktop ou Docker Engine.' >&2
   exit 1
@@ -15,6 +16,7 @@ if [[ -f .env ]]; then
   APP_PORT="${configured_port:-$APP_PORT}"
 fi
 base="http://localhost:${APP_PORT}"
+docker compose up -d --wait --wait-timeout 180
 echo '== Containers =='
 docker compose ps
 echo -e '\n== Health =='

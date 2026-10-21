@@ -5,7 +5,7 @@
 **Professor:** Raoni Monteiro de Oliveira  
 **Integrantes:** João Lucas Santos Lira, Mariana Ferreira, Thaissa Fernandes e Priscila Maciel de Lima.
 
-> **Status da entrega:** a E1 foi executada localmente com Docker Compose. Há evidências reais da API respondendo, dos contêineres iniciando e da permanência dos registros do PostgreSQL após `docker compose down` e `docker compose up -d`. Para fechar a documentação, recomenda-se capturar `docker compose ps` quando **ambos** os serviços estiverem `healthy`. A URL pública e os pipelines de E2/E3 ainda não estão disponíveis.
+> **Status da entrega:** a E1 foi executada localmente com Docker Compose. Há evidências reais da API respondendo, dos contêineres iniciando e da permanência dos registros do PostgreSQL após `docker compose down` e `docker compose up -d`. A validação local confirmou ambos os serviços `healthy`; mantenham prints atuais para a apresentação. A URL pública e os pipelines de E2/E3 ainda não estão disponíveis.
 
 ## Contexto do projeto
 
@@ -113,16 +113,15 @@ estágio do Dockerfile. Para rodar apenas os testes, com JDK 21 disponível:
 # Windows: .\mvnw.cmd test
 ```
 
-**Limite de escopo:** a abordagem TDD exigida na **E2** (story map, histórias, tarefas,
-testes por nível, commits red → green) ainda não foi implementada nesta E1.
+**E2:** testes HTTP/PostgreSQL e um novo ciclo red → green foram acrescentados; consulte `docs/ENTREGAS_E2_E3.md` para o alcance e as pendências.
 
 ## Pipeline e deploy
 
 | Entrega | Situação | Escopo |
 | --- | --- | --- |
 | E1 | Implementada e executada localmente | Build multi-stage, Compose, PostgreSQL, healthcheck, configuração e evidências reais |
-| E2 | Não implementada | Story map, TDD, testes unitários/integrados/aceitação na esteira |
-| E3 | Não implementada | CI/CD, branch protection, deploy público e rollback |
+| E2 | Implementação local parcial; ativação externa pendente | Story map, testes HTTP/PostgreSQL e ciclo TDD novo; ver docs/ENTREGAS_E2_E3.md |
+| E3 | Configuração preparada; não publicada | Workflow Actions, Blueprint Render e roteiro de proteção/rollback; faltam acessos e evidências públicas |
 
 O `mvn verify` **dentro do Dockerfile não substitui uma esteira de CI/CD**. A URL pública
 e as execuções vermelha/verde do pipeline dependem de E3; nenhuma URL é inventada aqui.
@@ -158,7 +157,7 @@ As capturas abaixo foram fornecidas pelo grupo após a execução local no Windo
 
 Também foi observada a resposta de `GET /api/historico/geracoes` com dois registros (`id` 1 e 2) relativos a 1.000 requisições, 1.000 hospitais, 30 insumos e `seed=42`. Um registro indicou `jaEstavaEmCache=false` e o outro `true`. Isso comprova a consulta ao histórico persistido; não comprova a durabilidade dos snapshots completos, que continuam em memória por decisão arquitetural.
 
-**Para finalizar a E1:** adicionar uma captura atualizada de `docker compose ps` mostrando `api (healthy)` e `db (healthy)`. O build ocorreu na máquina local, mas não há neste conjunto uma saída isolada de `mvn clean verify` para avaliar testes individualmente. Capturas da esteira vermelha/verde e URL pública pertencem às etapas E2/E3 da atividade.
+**Validação complementar:** `docs/evidencias/testes-green.log` registra a execução local dos testes unitários e HTTP com PostgreSQL, e `docs/evidencias/tdd-red.log` registra os novos testes antes da correção. Essas saídas locais não substituem prints da aplicação ou runs do GitHub Actions. A URL pública e as evidências externas continuam pendentes.
 
 ## Uso de IA
 
@@ -173,3 +172,17 @@ a integração mínima de metadados com PostgreSQL, o README e a apresentação.
 O código de cruzamento, os testes de Threads II, o script `scripts/benchmark.py`, os
 gráficos e o relatório original foram preservados. Para os benchmarks de grande porte,
 verifique os limites de CPU/RAM do Docker Desktop e evite requisições simultâneas grandes.
+
+## Complemento E2/E3
+
+Veja [story map, testes, TDD, esteira, deploy e rollback](docs/ENTREGAS_E2_E3.md).
+
+### Prompts principais desta sessão
+
+- “estude esse projeto e me diga como rodar”
+- “roda tudo ai”
+- “analise o que foi pedido pelo professor [...] veja se o codigo está cumprindo o necessário”
+- “faça todos os ajustes de codigo que estao faltando”
+- “a entrega de hoje é tudo que continha no print”
+
+A assistência de IA acrescentou validações, testes, automação e documentação. Testes locais e logs são verificáveis; revisão e apresentação pelos integrantes continuam necessárias. Os testes originais não são atribuídos retroativamente a TDD.

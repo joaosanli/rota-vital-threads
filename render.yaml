@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: rota-vital-api
+    runtime: docker
+    plan: free
+    branch: main
+    autoDeployTrigger: "off"
+    healthCheckPath: /actuator/health
+    envVars:
+      - key: DB_HOST
+        fromDatabase: {name: rota-vital-db, property: host}
+      - key: DB_PORT
+        fromDatabase: {name: rota-vital-db, property: port}
+      - key: DB_NAME
+        fromDatabase: {name: rota-vital-db, property: database}
+      - key: DB_USER
+        fromDatabase: {name: rota-vital-db, property: user}
+      - key: DB_PASSWORD
+        fromDatabase: {name: rota-vital-db, property: password}
+databases:
+  - name: rota-vital-db
+    plan: free
+    databaseName: rotavital
+    user: rotavital
+    ipAllowList: []

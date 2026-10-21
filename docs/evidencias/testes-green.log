@@ -1,0 +1,186 @@
+ Network rotavital-tests_default  Creating
+ Network rotavital-tests_default  Created
+ Volume rotavital-tests_maven_test_cache  Creating
+ Volume rotavital-tests_maven_test_cache  Created
+ Container rotavital-tests-db-1  Creating
+ Container rotavital-tests-db-1  Created
+ Container rotavital-tests-tests-1  Creating
+ Container rotavital-tests-tests-1  Created
+Attaching to db-1, tests-1
+db-1  | The files belonging to this database system will be owned by user "postgres".
+db-1  | This user must also own the server process.
+db-1  | 
+db-1  | The database cluster will be initialized with locale "en_US.utf8".
+db-1  | The default database encoding has accordingly been set to "UTF8".
+db-1  | The default text search configuration will be set to "english".
+db-1  | 
+db-1  | Data page checksums are disabled.
+db-1  | 
+db-1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db-1  | creating subdirectories ... ok
+db-1  | selecting dynamic shared memory implementation ... posix
+db-1  | selecting default max_connections ... 100
+db-1  | selecting default shared_buffers ... 128MB
+db-1  | selecting default time zone ... UTC
+db-1  | creating configuration files ... ok
+db-1  | running bootstrap script ... ok
+db-1  | sh: locale: not found
+db-1  | 2026-10-20 23:59:01.652 UTC [35] WARNING:  no usable system locales were found
+db-1  | performing post-bootstrap initialization ... ok
+db-1  | syncing data to disk ... ok
+db-1  | 
+db-1  | 
+db-1  | Success. You can now start the database server using:
+db-1  | 
+db-1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db-1  | 
+db-1  | initdb: warning: enabling "trust" authentication for local connections
+db-1  | initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+db-1  | waiting for server to start....2026-10-20 23:59:01.873 UTC [41] LOG:  starting PostgreSQL 16.14 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+db-1  | 2026-10-20 23:59:01.874 UTC [41] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1  | 2026-10-20 23:59:01.875 UTC [44] LOG:  database system was shut down at 2026-10-20 23:59:01 UTC
+db-1  | 2026-10-20 23:59:01.877 UTC [41] LOG:  database system is ready to accept connections
+db-1  |  done
+db-1  | server started
+db-1  | CREATE DATABASE
+db-1  | 
+db-1  | 
+db-1  | /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+db-1  | 
+db-1  | waiting for server to shut down....2026-10-20 23:59:02.007 UTC [41] LOG:  received fast shutdown request
+db-1  | 2026-10-20 23:59:02.007 UTC [41] LOG:  aborting any active transactions
+db-1  | 2026-10-20 23:59:02.009 UTC [41] LOG:  background worker "logical replication launcher" (PID 47) exited with exit code 1
+db-1  | 2026-10-20 23:59:02.009 UTC [42] LOG:  shutting down
+db-1  | 2026-10-20 23:59:02.009 UTC [42] LOG:  checkpoint starting: shutdown immediate
+db-1  | 2026-10-20 23:59:02.015 UTC [42] LOG:  checkpoint complete: wrote 926 buffers (5.7%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.006 s, sync=0.001 s, total=0.006 s; sync files=301, longest=0.001 s, average=0.000 s; distance=4272 kB, estimate=4272 kB; lsn=0/191E8F0, redo lsn=0/191E8F0
+db-1  | 2026-10-20 23:59:02.017 UTC [41] LOG:  database system is shut down
+db-1  |  done
+db-1  | server stopped
+db-1  | 
+db-1  | PostgreSQL init process complete; ready for start up.
+db-1  | 
+db-1  | 2026-10-20 23:59:02.128 UTC [1] LOG:  starting PostgreSQL 16.14 on aarch64-unknown-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit
+db-1  | 2026-10-20 23:59:02.128 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+db-1  | 2026-10-20 23:59:02.128 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+db-1  | 2026-10-20 23:59:02.129 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+db-1  | 2026-10-20 23:59:02.130 UTC [57] LOG:  database system was shut down at 2026-10-20 23:59:02 UTC
+db-1  | 2026-10-20 23:59:02.133 UTC [1] LOG:  database system is ready to accept connections
+tests-1  | [INFO] Scanning for projects...
+tests-1  | [INFO] 
+tests-1  | [INFO] ----------------< br.com.rotavital:rota-vital-threads >-----------------
+tests-1  | [INFO] Building rota-vital-threads 1.0.0
+tests-1  | [INFO]   from pom.xml
+tests-1  | [INFO] --------------------------------[ jar ]---------------------------------
+tests-1  | [INFO] 
+tests-1  | [INFO] --- clean:3.4.1:clean (default-clean) @ rota-vital-threads ---
+tests-1  | [INFO] Deleting /workspace/target
+tests-1  | [INFO] 
+tests-1  | [INFO] --- resources:3.3.1:resources (default-resources) @ rota-vital-threads ---
+tests-1  | [INFO] Copying 1 resource from src/main/resources to target/classes
+tests-1  | [INFO] Copying 1 resource from src/main/resources to target/classes
+tests-1  | [INFO] 
+tests-1  | [INFO] --- compiler:3.14.0:compile (default-compile) @ rota-vital-threads ---
+tests-1  | [INFO] Recompiling the module because of changed source code.
+tests-1  | [INFO] Compiling 11 source files with javac [debug parameters release 21] to target/classes
+tests-1  | [INFO] 
+tests-1  | [INFO] --- resources:3.3.1:testResources (default-testResources) @ rota-vital-threads ---
+tests-1  | [INFO] skip non existing resourceDirectory /workspace/src/test/resources
+tests-1  | [INFO] 
+tests-1  | [INFO] --- compiler:3.14.0:testCompile (default-testCompile) @ rota-vital-threads ---
+tests-1  | [INFO] Recompiling the module because of changed dependency.
+tests-1  | [INFO] Compiling 3 source files with javac [debug parameters release 21] to target/test-classes
+tests-1  | [INFO] /workspace/src/test/java/br/com/rotavital/web/ApiIT.java: /workspace/src/test/java/br/com/rotavital/web/ApiIT.java uses unchecked or unsafe operations.
+tests-1  | [INFO] /workspace/src/test/java/br/com/rotavital/web/ApiIT.java: Recompile with -Xlint:unchecked for details.
+tests-1  | [INFO] 
+tests-1  | [INFO] --- surefire:3.5.3:test (default-test) @ rota-vital-threads ---
+tests-1  | [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+tests-1  | [INFO] 
+tests-1  | [INFO] -------------------------------------------------------
+tests-1  | [INFO]  T E S T S
+tests-1  | [INFO] -------------------------------------------------------
+tests-1  | [INFO] Running br.com.rotavital.servico.CruzamentoServiceTest
+tests-1  | [INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.035 s -- in br.com.rotavital.servico.CruzamentoServiceTest
+tests-1  | [INFO] Running br.com.rotavital.cruzamento.MotorCruzamentoTest
+tests-1  | [INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.511 s -- in br.com.rotavital.cruzamento.MotorCruzamentoTest
+tests-1  | [INFO] 
+tests-1  | [INFO] Results:
+tests-1  | [INFO] 
+tests-1  | [INFO] Tests run: 11, Failures: 0, Errors: 0, Skipped: 0
+tests-1  | [INFO] 
+tests-1  | [INFO] 
+tests-1  | [INFO] --- jar:3.4.2:jar (default-jar) @ rota-vital-threads ---
+tests-1  | [INFO] Building jar: /workspace/target/rota-vital-threads-1.0.0.jar
+tests-1  | [INFO] 
+tests-1  | [INFO] --- spring-boot:3.5.0:repackage (repackage) @ rota-vital-threads ---
+tests-1  | [INFO] Replacing main artifact /workspace/target/rota-vital-threads-1.0.0.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+tests-1  | [INFO] The original artifact has been renamed to /workspace/target/rota-vital-threads-1.0.0.jar.original
+tests-1  | [INFO] 
+tests-1  | [INFO] --- failsafe:3.5.3:integration-test (default) @ rota-vital-threads ---
+tests-1  | [INFO] Using auto detected provider org.apache.maven.surefire.junitplatform.JUnitPlatformProvider
+tests-1  | [INFO] 
+tests-1  | [INFO] -------------------------------------------------------
+tests-1  | [INFO]  T E S T S
+tests-1  | [INFO] -------------------------------------------------------
+tests-1  | [INFO] Running br.com.rotavital.web.ApiIT
+tests-1  | 23:59:41.082 [main] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [br.com.rotavital.web.ApiIT]: ApiIT does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+tests-1  | 23:59:41.160 [main] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration br.com.rotavital.RotaVitalApplication for test class br.com.rotavital.web.ApiIT
+tests-1  | 
+tests-1  |   .   ____          _            __ _ _
+tests-1  |  /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+tests-1  | ( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+tests-1  |  \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+tests-1  |   '  |____| .__|_| |_|_| |_\__, | / / / /
+tests-1  |  =========|_|==============|___/=/_/_/_/
+tests-1  | 
+tests-1  |  :: Spring Boot ::                (v3.5.0)
+tests-1  | 
+tests-1  | 2026-10-20T23:59:41.458Z  INFO 212 --- [rota-vital-threads] [           main] br.com.rotavital.web.ApiIT               : Starting ApiIT using Java 21.0.12.1 with PID 212 (started by root in /workspace)
+tests-1  | 2026-10-20T23:59:41.459Z  INFO 212 --- [rota-vital-threads] [           main] br.com.rotavital.web.ApiIT               : No active profile set, falling back to 1 default profile: "default"
+tests-1  | 2026-10-20T23:59:42.245Z  INFO 212 --- [rota-vital-threads] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 0 (http)
+tests-1  | 2026-10-20T23:59:42.254Z  INFO 212 --- [rota-vital-threads] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+tests-1  | 2026-10-20T23:59:42.254Z  INFO 212 --- [rota-vital-threads] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.41]
+tests-1  | 2026-10-20T23:59:42.280Z  INFO 212 --- [rota-vital-threads] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+tests-1  | 2026-10-20T23:59:42.281Z  INFO 212 --- [rota-vital-threads] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 809 ms
+tests-1  | 2026-10-20T23:59:42.405Z  INFO 212 --- [rota-vital-threads] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+tests-1  | 2026-10-20T23:59:42.546Z  INFO 212 --- [rota-vital-threads] [           main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@5463f035
+tests-1  | 2026-10-20T23:59:42.547Z  INFO 212 --- [rota-vital-threads] [           main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+tests-1  | 2026-10-20T23:59:42.932Z  INFO 212 --- [rota-vital-threads] [           main] o.s.b.a.e.web.EndpointLinksResolver      : Exposing 2 endpoints beneath base path '/actuator'
+tests-1  | 2026-10-20T23:59:43.050Z  INFO 212 --- [rota-vital-threads] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 40875 (http) with context path '/'
+tests-1  | 2026-10-20T23:59:43.059Z  INFO 212 --- [rota-vital-threads] [           main] br.com.rotavital.web.ApiIT               : Started ApiIT in 1.807 seconds (process running for 2.36)
+tests-1  | Mockito is currently self-attaching to enable the inline-mock-maker. This will no longer work in future releases of the JDK. Please add Mockito as an agent to your build as described in Mockito's documentation: https://javadoc.io/doc/org.mockito/mockito-core/latest/org.mockito/org/mockito/Mockito.html#0.3
+tests-1  | OpenJDK 64-Bit Server VM warning: Sharing is only supported for boot loader classes because bootstrap classpath has been appended
+tests-1  | WARNING: A Java agent has been loaded dynamically (/root/.m2/repository/net/bytebuddy/byte-buddy-agent/1.17.5/byte-buddy-agent-1.17.5.jar)
+tests-1  | WARNING: If a serviceability tool is in use, please run with -XX:+EnableDynamicAgentLoading to hide this warning
+tests-1  | WARNING: If a serviceability tool is not in use, please run with -Djdk.instrument.traceUsage for more information
+tests-1  | WARNING: Dynamic loading of agents will be disallowed by default in a future release
+tests-1  | 2026-10-20T23:59:43.626Z  INFO 212 --- [rota-vital-threads] [o-auto-1-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+tests-1  | 2026-10-20T23:59:43.627Z  INFO 212 --- [rota-vital-threads] [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+tests-1  | 2026-10-20T23:59:43.627Z  INFO 212 --- [rota-vital-threads] [o-auto-1-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+tests-1  | [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.889 s -- in br.com.rotavital.web.ApiIT
+tests-1  | [INFO] 
+tests-1  | [INFO] Results:
+tests-1  | [INFO] 
+tests-1  | [INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0
+tests-1  | [INFO] 
+tests-1  | [INFO] 
+tests-1  | [INFO] --- failsafe:3.5.3:verify (default) @ rota-vital-threads ---
+tests-1  | [INFO] ------------------------------------------------------------------------
+tests-1  | [INFO] BUILD SUCCESS
+tests-1  | [INFO] ------------------------------------------------------------------------
+tests-1  | [INFO] Total time:  39.699 s
+tests-1  | [INFO] Finished at: 2026-10-20T23:59:44Z
+tests-1  | [INFO] ------------------------------------------------------------------------
+[Ktests-1 exited with code 0
+Aborting on container exit...
+ Container rotavital-tests-tests-1  Stopping
+ Container rotavital-tests-tests-1  Stopped
+ Container rotavital-tests-db-1  Stopping
+db-1     | 2026-10-20 23:59:44.558 UTC [1] LOG:  received fast shutdown request
+db-1     | 2026-10-20 23:59:44.558 UTC [1] LOG:  aborting any active transactions
+db-1     | 2026-10-20 23:59:44.560 UTC [1] LOG:  background worker "logical replication launcher" (PID 60) exited with exit code 1
+db-1     | 2026-10-20 23:59:44.560 UTC [55] LOG:  shutting down
+db-1     | 2026-10-20 23:59:44.560 UTC [55] LOG:  checkpoint starting: shutdown immediate
+db-1     | 2026-10-20 23:59:44.561 UTC [55] LOG:  checkpoint complete: wrote 55 buffers (0.3%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.002 s; sync files=50, longest=0.001 s, average=0.000 s; distance=171 kB, estimate=171 kB; lsn=0/19497B0, redo lsn=0/19497B0
+db-1     | 2026-10-20 23:59:44.563 UTC [1] LOG:  database system is shut down
+ Container rotavital-tests-db-1  Stopped
+[Kdb-1 exited with code 0
