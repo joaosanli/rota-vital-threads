@@ -1,11 +1,11 @@
-# Rota Vital — Projeto Integrador | Entrega E1 (Container automatizado)
+# Rota Vital — Container, testes e deploy automatizados
 
 **Curso:** Análise e Desenvolvimento de Sistemas — CESAR School  
 **Disciplina:** Infraestrutura de Software — Unidade 2 / 2026.2  
 **Professor:** Raoni Monteiro de Oliveira  
 **Integrantes:** João Lucas Santos Lira, Mariana Ferreira, Thaissa Fernandes e Priscila Maciel de Lima.
 
-> **Status da entrega:** a E1 foi executada localmente com Docker Compose. Há evidências reais da API respondendo, dos contêineres iniciando e da permanência dos registros do PostgreSQL após `docker compose down` e `docker compose up -d`. A validação local confirmou ambos os serviços `healthy`; mantenham prints atuais para a apresentação. A URL pública e os pipelines de E2/E3 ainda não estão disponíveis.
+> **Status da entrega:** a E1 foi executada localmente com Docker Compose. Há evidências reais da API respondendo, dos contêineres iniciando e da permanência dos registros do PostgreSQL após `docker compose down` e `docker compose up -d`. A validação local confirmou ambos os serviços `healthy`; mantenham prints atuais para a apresentação. A esteira GitHub Actions já foi publicada e iniciou a execução após o push. O deploy público ainda depende da configuração do Render.
 
 ## Contexto do projeto
 
@@ -120,11 +120,11 @@ estágio do Dockerfile. Para rodar apenas os testes, com JDK 21 disponível:
 | Entrega | Situação | Escopo |
 | --- | --- | --- |
 | E1 | Implementada e executada localmente | Build multi-stage, Compose, PostgreSQL, healthcheck, configuração e evidências reais |
-| E2 | Implementação local parcial; ativação externa pendente | Story map, testes HTTP/PostgreSQL e ciclo TDD novo; ver docs/ENTREGAS_E2_E3.md |
+| E2 | Testes locais aprovados; esteira publicada | Story map, testes HTTP/PostgreSQL e ciclo TDD novo; ver docs/ENTREGAS_E2_E3.md |
 | E3 | Configuração preparada; não publicada | Workflow Actions, Blueprint Render e roteiro de proteção/rollback; faltam acessos e evidências públicas |
 
 O `mvn verify` **dentro do Dockerfile não substitui uma esteira de CI/CD**. A URL pública
-e as execuções vermelha/verde do pipeline dependem de E3; nenhuma URL é inventada aqui.
+e a esteira GitHub Actions agora executa os testes em push e pull request. As evidências de deploy dependem da ativação do Render.
 
 **Repositório do grupo:** https://github.com/joaosanli/rota-vital-threads  
 **URL pública:** [preencher na E3]
@@ -186,3 +186,9 @@ Veja [story map, testes, TDD, esteira, deploy e rollback](docs/ENTREGAS_E2_E3.md
 - “a entrega de hoje é tudo que continha no print”
 
 A assistência de IA acrescentou validações, testes, automação e documentação. Testes locais e logs são verificáveis; revisão e apresentação pelos integrantes continuam necessárias. Os testes originais não são atribuídos retroativamente a TDD.
+
+### Esteira publicada
+
+[Execuções do GitHub Actions](https://github.com/joaosanli/rota-vital-threads/actions) · [Primeira execução após o push](https://github.com/joaosanli/rota-vital-threads/actions/runs/39519030464).
+
+A aprovação dos testes não significa deploy concluído. Sem o secret `RENDER_DEPLOY_HOOK_URL` no ambiente `production`, a etapa de deploy falha explicitamente. A proteção da `main` deve ser habilitada nas configurações do GitHub. O log vermelho local é evidência de TDD, não de bloqueio de deploy na esteira.

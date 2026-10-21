@@ -7,10 +7,11 @@ permissions:
   contents: read
 concurrency:
   group: ci-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 jobs:
   tests:
     name: Testes
+    timeout-minutes: 15
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -45,6 +46,7 @@ jobs:
             target/failsafe-reports/
   image:
     name: Imagem
+    timeout-minutes: 20
     needs: tests
     runs-on: ubuntu-latest
     steps:
@@ -52,6 +54,7 @@ jobs:
       - run: docker build -t rota-vital:${{ github.sha }} .
   deploy:
     name: Solicitar deploy
+    timeout-minutes: 5
     needs: [tests, image]
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
@@ -63,5 +66,5 @@ jobs:
           COMMIT_SHA: ${{ github.sha }}
         run: |
           test -n "$DEPLOY_HOOK" || { echo 'Configure RENDER_DEPLOY_HOOK_URL no ambiente production'; exit 1; }
-          curl --fail --silent --show-error --get "$DEPLOY_HOOK" --data-urlencode "ref=$COMMIT_SHA" --output /tmp/deploy.json
+          curl --connect-timeout 15 --max-time 90 --fail --silent --show-error --get "$DEPLOY_HOOK" --data-urlencode "ref=$COMMIT_SHA" --output /tmp/deploy.json
           echo 'Solicitação aceita pelo provedor. Confirme o término no painel Render.'

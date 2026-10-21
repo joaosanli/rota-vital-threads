@@ -61,6 +61,6 @@ Escolher um deploy saudável anterior no painel Render e usar Rollback, quando d
 
 ## Situação
 
-Arquivos de automação preparados localmente. Sem acesso ao GitHub/provedor, não foi possível configurar proteção, publicar PRs, executar Actions ou disponibilizar URL pública. E2 e E3 não devem ser declaradas integralmente concluídas antes dessas evidências.
+A automação foi publicada na main e o GitHub Actions iniciou a execução 39519030464. Ainda não foram confirmadas proteção da main, revisão por PR, configuração do Render e URL pública. E2 e E3 não devem ser declaradas integralmente concluídas antes dessas evidências.
 
 Referências oficiais: https://render.com/docs/blueprint-spec e https://render.com/docs/deploy-hooks.
