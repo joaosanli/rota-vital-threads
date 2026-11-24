@@ -5,7 +5,7 @@
 **Professor:** Raoni Monteiro de Oliveira  
 **Integrantes:** João Lucas Santos Lira, Mariana Ferreira, Thaissa Fernandes e Priscila Maciel de Lima.
 
-> **Status da entrega:** a E1 foi executada localmente com Docker Compose. Há evidências reais da API respondendo, dos contêineres iniciando e da permanência dos registros do PostgreSQL após `docker compose down` e `docker compose up -d`. A validação local confirmou ambos os serviços `healthy`; mantenham prints atuais para a apresentação. A esteira GitHub Actions já foi publicada e iniciou a execução após o push. O deploy público ainda depende da configuração do Render.
+> **Status da entrega:** E1, E2 e E3 implementadas. A API roda via Docker Compose, a esteira GitHub Actions testa, constrói a imagem e dispara o deploy no Render a cada push na `main`, e a aplicação está publicada em https://rota-vital-api-udun.onrender.com (plano gratuito: a primeira requisição pode demorar ~1 min por *cold start*).
 
 ## Contexto do projeto
 
@@ -113,21 +113,31 @@ estágio do Dockerfile. Para rodar apenas os testes, com JDK 21 disponível:
 # Windows: .\mvnw.cmd test
 ```
 
-**E2:** testes HTTP/PostgreSQL e um novo ciclo red → green foram acrescentados; consulte `docs/ENTREGAS_E2_E3.md` para o alcance e as pendências.
+**E2:** testes HTTP/PostgreSQL (`ApiIT`) e um ciclo red → green real (`docs/evidencias/tdd-red.log` → `testes-green.log`); story map e alcance do TDD em `docs/ENTREGAS_E2_E3.md`. O projeto original não é declarado como TDD retroativo.
 
 ## Pipeline e deploy
 
 | Entrega | Situação | Escopo |
 | --- | --- | --- |
-| E1 | Implementada e executada localmente | Build multi-stage, Compose, PostgreSQL, healthcheck, configuração e evidências reais |
-| E2 | Testes locais aprovados; esteira publicada | Story map, testes HTTP/PostgreSQL e ciclo TDD novo; ver docs/ENTREGAS_E2_E3.md |
-| E3 | Configuração preparada; não publicada | Workflow Actions, Blueprint Render e roteiro de proteção/rollback; faltam acessos e evidências públicas |
+| E1 | Concluída | Build multi-stage, Compose, PostgreSQL, healthcheck, configuração e evidências |
+| E2 | Concluída | Story map, testes unitários + HTTP/PostgreSQL, ciclo TDD red → green; ver [docs/ENTREGAS_E2_E3.md](docs/ENTREGAS_E2_E3.md) |
+| E3 | Concluída | Workflow `ci.yml` (Testes → Imagem → Deploy) + Render via Deploy Hook |
 
-O `mvn verify` **dentro do Dockerfile não substitui uma esteira de CI/CD**. A URL pública
-e a esteira GitHub Actions agora executa os testes em push e pull request. As evidências de deploy dependem da ativação do Render.
+**Fluxo:** push/PR → job *Testes* (Maven + PostgreSQL de serviço) → job *Imagem* (`docker build`) → job *Solicitar deploy* (somente `push` na `main`, ambiente `production`, secret `RENDER_DEPLOY_HOOK_URL`). Com qualquer teste vermelho, imagem e deploy nem iniciam. O Auto Deploy do Render fica desligado; só a esteira libera o deploy.
 
 **Repositório do grupo:** https://github.com/joaosanli/rota-vital-threads  
-**URL pública:** [preencher na E3]
+**URL pública:** https://rota-vital-api-udun.onrender.com — health: https://rota-vital-api-udun.onrender.com/actuator/health
+
+### Evidências da esteira
+
+| Evidência | Link |
+| --- | --- |
+| Execução **vermelha** (expectativa de teste invertida; imagem e deploy não rodam) | [run 39520721359](https://github.com/joaosanli/rota-vital-threads/actions/runs/39520721359) |
+| Execução **verde** após corrigir o teste (PR) | [run 39520836800](https://github.com/joaosanli/rota-vital-threads/actions/runs/39520836800) |
+| Merge na `main` verde, com deploy solicitado | [run 39521021341](https://github.com/joaosanli/rota-vital-threads/actions/runs/39521021341) · [PR #1](https://github.com/joaosanli/rota-vital-threads/pull/1) |
+| Aplicação pública saudável (`{"status":"UP"}`) | [`docs/evidencias/04-render-health.png`](docs/evidencias/04-render-health.png) |
+
+O `mvn verify` dentro do Dockerfile não substitui a esteira: ele só garante que a imagem não é construída com testes unitários quebrados.
 
 ## Decisões técnicas e justificativas
 
@@ -143,7 +153,8 @@ e a esteira GitHub Actions agora executa os testes em push e pull request. As ev
 | Ordem/saúde | `depends_on: service_healthy` + pg_isready + Actuator | `depends_on` simples / sleep fixo | A API só inicia após banco pronto, e os healthchecks detectam falhas reais. |
 | Configuração | `.env` local + `.env.example` rastreado | Senha no Java/Compose | Centraliza variáveis sem publicar credenciais; a senha é obrigatória no Compose. |
 | Persistência de metadados | Spring JDBC + `schema.sql` | JPA / Flyway | Implementação pequena para E1, sem introduzir ORM; evoluir migrations na próxima etapa. |
-| Testes nesta fase | `mvn clean verify` no build | Build sem testes | Interrompe o build se os testes existentes falharem; TDD completo fica para E2. |
+| Testes | `mvn clean verify` no build + testes de integração na esteira | Build sem testes | Interrompe o build se os testes falharem; testes com PostgreSQL rodam no CI. |
+| CI/CD | GitHub Actions + Render (Deploy Hook) | Jenkins / deploy manual | Repositório já está no GitHub; Render executa o Dockerfile e oferece PostgreSQL gerenciado sem administrar VM. |
 
 ## Evidências da E1
 
@@ -189,6 +200,4 @@ A assistência de IA acrescentou validações, testes, automação e documentaç
 
 ### Esteira publicada
 
-[Execuções do GitHub Actions](https://github.com/joaosanli/rota-vital-threads/actions) · [Primeira execução após o push](https://github.com/joaosanli/rota-vital-threads/actions/runs/39519030464).
-
-A aprovação dos testes não significa deploy concluído. Sem o secret `RENDER_DEPLOY_HOOK_URL` no ambiente `production`, a etapa de deploy falha explicitamente. A proteção da `main` deve ser habilitada nas configurações do GitHub. O log vermelho local é evidência de TDD, não de bloqueio de deploy na esteira.
+[Execuções do GitHub Actions](https://github.com/joaosanli/rota-vital-threads/actions). A primeira execução na `main` (run 39519030464) falhou por falta do secret do deploy; após configurar o Render, a [run 39519205682](https://github.com/joaosanli/rota-vital-threads/actions/runs/39519205682) ficou verde.
