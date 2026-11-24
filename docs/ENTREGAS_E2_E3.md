@@ -42,25 +42,14 @@ Render: executa o Dockerfile e fornece PostgreSQL gerenciado; evita administrar 
 
 O workflow ci.yml roda testes em push e PR, incluindo PostgreSQL; só constrói a imagem após aprovação dos testes; só solicita deploy após imagem e testes aprovados em push para main. O Render reconstrói o mesmo commit usando o Dockerfile. O job solicita o deploy, mas não acompanha sua conclusão: confirme no painel e na URL pública.
 
-## Ativação externa pendente
-
-1. Obter permissão de escrita/admin no repositório ou criar um fork na conta do grupo.
-2. Publicar os commits locais em uma branch e abrir PR.
-3. No GitHub, proteger main: exigir PR, revisão e os checks Testes e Imagem; impedir bypass e force-push.
-4. Criar conta Render e autorizar o repositório correto. Criar Blueprint usando render.yaml. A criação inicial é bootstrap; os merges seguintes usam o workflow.
-5. Conferir custos e limites antes de confirmar. O banco fornece os segredos por referências do Blueprint; nenhuma senha real é versionada.
-6. No painel Render, copiar Deploy Hook. No ambiente production do GitHub, criar o secret RENDER_DEPLOY_HOOK_URL. Não colocar o hook em README, prints ou mensagens.
-7. Manter Auto Deploy desligado no Render: o Actions é quem libera o deploy após os gates.
-8. Fazer merge de um PR verde. Confirmar deploy concluído e /actuator/health retornando UP na URL pública; registrar a URL no README.
-9. Para evidência vermelha real: em branch separada, alterar temporariamente uma expectativa de teste, fazer push e abrir PR. Registrar falha e merge bloqueado; corrigir o teste e registrar nova execução verde. Não mesclar a falha na main.
-10. Guardar links dos runs, PR, deploy concluído e URL pública. Logs locais não substituem evidências da esteira.
-
 ## Rollback
 
 Escolher um deploy saudável anterior no painel Render e usar Rollback, quando disponível; confirmar a saúde na URL pública. Alternativa: reverter o commit problemático por um PR com git revert; o merge aprovado executa a esteira novamente e publica a reversão. Rollback da aplicação não restaura dados: mudanças incompatíveis no banco exigem plano próprio e backup. O schema atual só cria tabela se ausente.
 
-## Situação
+## Evidências verificadas
 
-A automação foi publicada na main e o GitHub Actions iniciou a execução 39519030464. Ainda não foram confirmadas proteção da main, revisão por PR, configuração do Render e URL pública. E2 e E3 não devem ser declaradas integralmente concluídas antes dessas evidências.
+O ciclo de TDD das validações pode ser acompanhado no [commit vermelho](https://github.com/joaosanli/rota-vital-threads/commit/c38a2cb5d3722210f07a6ba9fd8cd4429d0d3274) e no [commit verde seguinte](https://github.com/joaosanli/rota-vital-threads/commit/2d6b19ad30db49d77698c74fa66af361ac0d1948). A cobertura posterior do sistema original está descrita acima.
 
-Referências oficiais: https://render.com/docs/blueprint-spec e https://render.com/docs/deploy-hooks.
+As [regras efetivas da main](https://api.github.com/repos/joaosanli/rota-vital-threads/rules/branches/main) exigem pull request, resolução das conversas e os checks Testes e Imagem. Permitem zero aprovações formais. A [execução após o merge](https://github.com/joaosanli/rota-vital-threads/actions/runs/39521021341) registra a solicitação de deploy.
+
+Codex acrescentou testes de reprodutibilidade da semente e limites de tamanho da H1. A H3 verifica o limite de 20 e a ordem dos IDs em PostgreSQL real com 22 inserções. O resultado desta revisão está em evidencias/revisao-u2.log e evidencias/aceite-u2.json. O segundo arquivo registra quatro cenários e os resultados dos 23 passos.

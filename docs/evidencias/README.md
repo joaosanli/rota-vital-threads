@@ -4,4 +4,4 @@
 - `02-api-health.png`: endpoint `/actuator/health` retorna `{"status":"UP"}`.
 - `03-persistencia.png`: execução `docker compose down` e `docker compose up -d`, com consulta mostrando registros mantidos após recriação.
 
-**Complementar antes de enviar:** print atualizado de `docker compose ps` com os dois serviços `healthy`. As evidências de pipeline vermelho/verde e URL pública são itens futuros da E2/E3.
+A captura 04 registra o healthcheck remoto histórico. Veja as execuções e as regras da main no README e em ENTREGAS_E2_E3.md.

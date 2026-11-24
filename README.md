@@ -206,3 +206,5 @@ A assistência de IA acrescentou validações, testes, automação e documentaç
 ## Planejamento da remodelagem — Unidade II, Parte 2
 
 [Diagramas, planilha, ADRs e cenário de aceite](docs/arquitetura/README.md).
+
+[Planejamento da Parte 2 (PDF)](docs/arquitetura/Rota-Vital-Planejamento-U2.pdf) · [Slides (PowerPoint)](docs/arquitetura/Rota-Vital-Slides-U2.pptx).
