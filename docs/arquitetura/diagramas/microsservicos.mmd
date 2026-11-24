@@ -1,0 +1,11 @@
+flowchart LR
+ U["Operador / OIDC"] --> R["Requisições REST"]
+ R <-->|outbox / inbox| B["Broker durável"]
+ A["Alocação / saga"] <-->|comandos / eventos| B
+ E["Estoque"] <-->|reservar / liberar| B
+ X["Expedição"] <-->|preparar / cancelar| B
+ A -->|REST / saldo consultivo| E
+ R --> RD[("BD Requisições")]
+ E --> ED[("BD Estoque")]
+ A --> AD[("BD Alocação")]
+ X --> XD[("BD Expedição")]

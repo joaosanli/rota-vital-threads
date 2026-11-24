@@ -1,0 +1,5 @@
+flowchart LR
+ U["Operadores"] --> L["Entrada Render"]
+ L --> A["8 × Spring Boot 1c-2g"]
+ A -->|"Pool máximo total: 32"| P[("PostgreSQL primário · 50 GB")]
+ P -. replicação assíncrona .-> S[("Standby · 50 GB · outra zona")]

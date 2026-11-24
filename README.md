@@ -201,3 +201,8 @@ A assistência de IA acrescentou validações, testes, automação e documentaç
 ### Esteira publicada
 
 [Execuções do GitHub Actions](https://github.com/joaosanli/rota-vital-threads/actions). A primeira execução na `main` (run 39519030464) falhou por falta do secret do deploy; após configurar o Render, a [run 39519205682](https://github.com/joaosanli/rota-vital-threads/actions/runs/39519205682) ficou verde.
+
+
+## Planejamento da remodelagem — Unidade II, Parte 2
+
+[Diagramas, planilha, ADRs e cenário de aceite](docs/arquitetura/README.md).

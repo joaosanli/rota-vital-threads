@@ -1,0 +1,8 @@
+flowchart LR
+ R["Requisições"] -->|Cliente–fornecedor: pedido e resultado| A["Alocação"]
+ E["Estoque"] -->|Cliente–fornecedor: oferta por ACL e reserva| A
+ X["Expedição"] -->|Cliente–fornecedor: resultado do preparo| A
+ I["Identidade e Acesso"] -. OIDC / JWT .-> A
+ I -.-> R
+ I -.-> E
+ I -.-> X
