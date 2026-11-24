@@ -21,7 +21,7 @@ class AlocacaoTest {
         Alocacao a = nova();
         var s = a.iniciarTentativa(List.of(new Oferta("H-01", 8, 5)));
         assertThat(s).isEmpty();
-        assertThat(a.estado()).isEqualTo(EstadoAlocacao.SEM_OFERTA);
+        assertThat(a.estado()).isEqualTo(EstadoAlocacao.SEM_CANDIDATO);
     }
 
     @Test
@@ -76,6 +76,19 @@ class AlocacaoTest {
         a.registrarReservaConfirmada(t); // atrasado
         assertThat(a.tentativas().get(0).estado()).isEqualTo(EstadoTentativa.ENCERRADA);
         assertThat(a.estado()).isEqualTo(EstadoAlocacao.ABERTA);
+    }
+
+    @Test
+    void estoqueBaixoRecebePenalidadeDe80() {
+        assertThat(Pontuacao.calcular(new Oferta("H-02", 15, 10), 10).valor()).isEqualTo(90);
+        assertThat(Pontuacao.calcular(new Oferta("H-03", 30, 30), 10).valor()).isEqualTo(30);
+    }
+
+    @Test
+    void empateDePontuacaoVaiParaOMenorId() {
+        Alocacao a = nova();
+        var s = a.iniciarTentativa(List.of(new Oferta("H-09", 30, 20), new Oferta("H-04", 30, 20)));
+        assertThat(s.orElseThrow().hospitalId()).isEqualTo("H-04");
     }
 
     @Test

@@ -4,7 +4,7 @@ br.com.rotavital
 │   ├── negocio
 │   │   ├── aplicacao       IniciarAlocacao, ConfirmarAlocacao, ConsultarAlocacao
 │   │   │                   + portas: OfertasDisponiveis, ReservaDeEstoque, PreparoDeExpedicao
-│   │   └── dominio         Alocacao (raiz), Tentativa, Oferta, Pontuacao,
+│   │   └── dominio         Alocacao (raiz), Tentativa, Oferta, Pontuacao, PoliticaDeRanking,
 │   │                       SolicitacaoReserva, EstadoAlocacao, EstadoTentativa, AlocacaoRepository
 │   └── dados               AlocacaoRepositoryMemoria, EstoqueAcl, ExpedicaoAcl
 ├── requisicoes                   (suporte)
