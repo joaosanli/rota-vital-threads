@@ -1,0 +1,10 @@
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.667 s -- in br.com.rotavital.alocacao.negocio.dominio.AlocacaoTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.459 s -- in br.com.rotavital.ArquiteturaEmCamadasTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.182 s -- in br.com.rotavital.configuracao.FluxoCompletoTest
+[INFO] Tests run: 9, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.541 s -- in br.com.rotavital.cruzamento.MotorCruzamentoTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.028 s -- in br.com.rotavital.servico.CruzamentoServiceTest
+[INFO] Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.030 s -- in br.com.rotavital.servico.RepositorioDeDadosTest
+[INFO] Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.104 s -- in br.com.rotavital.web.LimitesGeracaoTest
+[INFO] Tests run: 0, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.867 s -- in br.com.rotavital.alocacao.aceite.ExecutarAceiteTest
+[INFO] Tests run: 33, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
