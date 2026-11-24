@@ -79,7 +79,7 @@ class FluxoCompletoTest {
         Requisicao req = registrar.executar("H-09", "I-01", 50, Prioridade.URGENTE);
         iniciar.executar(req.id(), req.insumoId(), req.quantidade());
         Alocacao a = confirmar.executar(req.id());
-        assertThat(a.estado()).isEqualTo(EstadoAlocacao.SEM_OFERTA);
+        assertThat(a.estado()).isEqualTo(EstadoAlocacao.SEM_CANDIDATO);
         assertThat(saldo("H-03")).isEqualTo(30);
     }
 

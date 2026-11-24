@@ -3,8 +3,8 @@ package br.com.rotavital.alocacao.negocio.dominio;
 /** Objeto de valor: ordena as ofertas; menor e melhor. */
 public record Pontuacao(int valor) implements Comparable<Pontuacao> {
 
-    /** Penalidade (em km equivalentes) para quem ficaria com estoque baixo apos atender. */
-    public static final int PENALIDADE_ESTOQUE_BAIXO = 30;
+    /** Penalidade em km (igual a MotorCruzamento.PENALIDADE_ESTOQUE_BAIXO_KM) para quem ficaria com estoque baixo apos atender. */
+    public static final int PENALIDADE_ESTOQUE_BAIXO = 80;
 
     /** O estoque e baixo quando a oferta nao chega ao dobro do solicitado. */
     public static Pontuacao calcular(Oferta oferta, int quantidadeSolicitada) {

@@ -12,5 +12,5 @@ public enum EstadoAlocacao {
     /** Falha de preparo; aguardando os estados terminais de reserva e preparo. */
     COMPENSANDO,
     /** Nenhuma oferta suficiente. Estado terminal. */
-    SEM_OFERTA
+    SEM_CANDIDATO
 }

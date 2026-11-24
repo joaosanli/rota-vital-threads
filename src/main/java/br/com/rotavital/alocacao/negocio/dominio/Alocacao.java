@@ -2,7 +2,6 @@ package br.com.rotavital.alocacao.negocio.dominio;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -50,13 +49,9 @@ public class Alocacao {
         Set<String> jaTentados = new HashSet<>();
         tentativas.forEach(t -> jaTentados.add(t.oferta().hospitalId()));
 
-        Optional<Oferta> melhor = ofertas.stream()
-                .filter(o -> o.quantidade() >= quantidadeSolicitada)
-                .filter(o -> !jaTentados.contains(o.hospitalId()))
-                .min(Comparator.comparing((Oferta o) -> Pontuacao.calcular(o, quantidadeSolicitada))
-                        .thenComparing(Oferta::hospitalId));
+        Optional<Oferta> melhor = PoliticaDeRanking.selecionar(ofertas, quantidadeSolicitada, jaTentados);
         if (melhor.isEmpty()) {
-            estado = EstadoAlocacao.SEM_OFERTA;
+            estado = EstadoAlocacao.SEM_CANDIDATO;
             return Optional.empty();
         }
         Oferta escolhida = melhor.get();

@@ -1,8 +1,8 @@
 # language: pt
 Funcionalidade: Recomendar fornecedor para um pedido sintético
-  Como coordenadora de logística de um hospital solicitante (Mariana),
-  quero que o sistema recomende o fornecedor adequado para o meu pedido urgente,
-  para receber o insumo de um hospital que realmente tem estoque suficiente.
+  Como Mariana, analista de abastecimento,
+  quero recomendar um único fornecedor para um pedido sintético,
+  para solicitar uma reserva rastreável, seguindo a política de estoque e distância.
 
   Cenário: Penalizar estoque baixo e descartar estoque insuficiente
     Dado um pedido urgente de 10 unidades do insumo I-01
@@ -28,9 +28,9 @@ Funcionalidade: Recomendar fornecedor para um pedido sintético
     Então a alocação deve ficar em ABERTA
     E a tentativa anterior deve estar ENCERRADA
 
-  Cenário: Descartar todas as ofertas quando nenhuma é suficiente
+  Cenário: Registrar SEM_CANDIDATO quando nenhuma oferta é suficiente
     Dado um pedido urgente de 50 unidades do insumo I-01
     E que H-01 oferece 8 unidades a 5 km
     E que H-02 oferece 15 unidades a 10 km
     Quando a alocação ranquear as ofertas e iniciar uma tentativa
-    Então a alocação deve ficar em SEM_OFERTA
+    Então a alocação deve ficar em SEM_CANDIDATO
