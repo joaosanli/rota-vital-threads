@@ -10,7 +10,7 @@ Entrega de Infraestrutura de Software, Unidade II · Parte 2, CESAR School, 2026
 - [Cenário baixo](diagramas/cenario-baixo.png), [moderado](diagramas/cenario-moderado.png) e [alto](diagramas/cenario-alto.png) · fontes Mermaid na mesma pasta.
 - [Planilha de orçamento](orcamento-rota-vital.xlsx) · premissas editáveis, fórmulas e fontes.
 - [ADR 0001](adr/0001-decomposicao.md) e [ADR 0002](adr/0002-reserva-e-compensacao.md).
-- [Cenário Gherkin](aceite/alocacao.feature) · especificação para execução na Parte 3.
+- [Cenário Gherkin](../../src/test/resources/features/alocacao.feature) · executado pelos testes (`ExecutarAceiteTest`).
 - [Estrutura de pacotes](pacotes.txt).
 
 ## Escopo
