@@ -1,0 +1,31 @@
+br.com.rotavital
+├── alocacao
+│   ├── apresentacao        AlocacaoController
+│   ├── negocio
+│   │   ├── aplicacao       IniciarAlocacao, ConfirmarAlocacao
+│   │   └── dominio         Alocacao, Tentativa, Oferta
+│   └── dados               AlocacaoRepositoryJdbc, EstoqueAcl
+├── requisicoes
+│   ├── apresentacao        RequisicaoController
+│   ├── negocio
+│   │   ├── aplicacao       RegistrarRequisicao
+│   │   └── dominio         Requisicao, Prioridade
+│   └── dados               RequisicaoRepositoryJdbc
+├── estoque
+│   ├── apresentacao        EstoqueController
+│   ├── negocio
+│   │   ├── aplicacao       ReservarInsumo, LiberarReserva
+│   │   └── dominio         PosicaoEstoque, Reserva
+│   └── dados               EstoqueRepositoryJdbc
+├── expedicao
+│   ├── apresentacao        ExpedicaoController
+│   ├── negocio
+│   │   ├── aplicacao       PrepararTransferencia
+│   │   └── dominio         PlanoTransferencia, JanelaColeta
+│   └── dados               ExpedicaoRepositoryJdbc
+└── identidade
+    ├── apresentacao        SessaoController
+    ├── negocio
+    │   ├── aplicacao       ConsultarPermissoes
+    │   └── dominio         Papel, Permissao
+    └── dados               ProvedorOidcClient
