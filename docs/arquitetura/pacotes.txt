@@ -1,31 +1,36 @@
 br.com.rotavital
-├── alocacao
+├── alocacao                      (core)
 │   ├── apresentacao        AlocacaoController
 │   ├── negocio
-│   │   ├── aplicacao       IniciarAlocacao, ConfirmarAlocacao
-│   │   └── dominio         Alocacao, Tentativa, Oferta
-│   └── dados               AlocacaoRepositoryJdbc, EstoqueAcl
-├── requisicoes
+│   │   ├── aplicacao       IniciarAlocacao, ConfirmarAlocacao, ConsultarAlocacao
+│   │   │                   + portas: OfertasDisponiveis, ReservaDeEstoque, PreparoDeExpedicao
+│   │   └── dominio         Alocacao (raiz), Tentativa, Oferta, Pontuacao,
+│   │                       SolicitacaoReserva, EstadoAlocacao, EstadoTentativa, AlocacaoRepository
+│   └── dados               AlocacaoRepositoryMemoria, EstoqueAcl, ExpedicaoAcl
+├── requisicoes                   (suporte)
 │   ├── apresentacao        RequisicaoController
 │   ├── negocio
-│   │   ├── aplicacao       RegistrarRequisicao
-│   │   └── dominio         Requisicao, Prioridade
-│   └── dados               RequisicaoRepositoryJdbc
-├── estoque
+│   │   ├── aplicacao       RegistrarRequisicao, ConsultarRequisicao
+│   │   └── dominio         Requisicao, Prioridade, RequisicaoRepository
+│   └── dados               RequisicaoRepositoryMemoria
+├── estoque                       (suporte)
 │   ├── apresentacao        EstoqueController
 │   ├── negocio
-│   │   ├── aplicacao       ReservarInsumo, LiberarReserva
-│   │   └── dominio         PosicaoEstoque, Reserva
-│   └── dados               EstoqueRepositoryJdbc
-├── expedicao
+│   │   ├── aplicacao       ConsultarPosicoes, ReservarInsumo, LiberarReserva
+│   │   └── dominio         PosicaoEstoque (raiz), EstoqueRepository
+│   └── dados               EstoqueRepositoryMemoria
+├── expedicao                     (suporte)
 │   ├── apresentacao        ExpedicaoController
 │   ├── negocio
-│   │   ├── aplicacao       PrepararTransferencia
-│   │   └── dominio         PlanoTransferencia, JanelaColeta
-│   └── dados               ExpedicaoRepositoryJdbc
-└── identidade
-    ├── apresentacao        SessaoController
-    ├── negocio
-    │   ├── aplicacao       ConsultarPermissoes
-    │   └── dominio         Papel, Permissao
-    └── dados               ProvedorOidcClient
+│   │   ├── aplicacao       PrepararTransferencia, CancelarTransferencia, ConsultarPlano
+│   │   └── dominio         PlanoTransferencia (raiz), JanelaColeta, PlanoRepository
+│   └── dados               PlanoRepositoryMemoria
+├── identidade                    (genérico)
+│   ├── apresentacao        SessaoController
+│   ├── negocio
+│   │   ├── aplicacao       ConsultarPermissoes
+│   │   └── dominio         Papel, Permissao, ProvedorDeIdentidade
+│   └── dados               ProvedorOidcClient
+└── configuracao            ContextosConfig (composição: liga casos de uso e portas)
+
+Código da Parte 1 preservado: cruzamento, dominio, servico, web.
